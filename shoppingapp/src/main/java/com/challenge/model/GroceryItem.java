@@ -26,8 +26,8 @@ public class GroceryItem {
     private String name;
     private String type;
     private double value;
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // private GroceryList list;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GroceryList list;
 
 
     public GroceryItem() {
@@ -73,9 +73,9 @@ public class GroceryItem {
     }
 
 
-    // public void setList(GroceryList list) {
-    //     this.list = list;
-    // }
+    public void setList(GroceryList list) {
+        this.list = list;
+    }
 
     public GroceryItem id(int id) {
         this.id = id;

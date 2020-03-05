@@ -1,12 +1,15 @@
 package com.challenge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
@@ -18,9 +21,8 @@ public class GroceryList {
     private int id;
     @Column(unique = true)
     private String name;
-    // @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
-    // private List<GroceryItem> list = new ArrayList<>();
-
+    @OneToMany(mappedBy = "list",cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<GroceryItem> list = new ArrayList<>();
 
     public GroceryList() {
     }
@@ -67,14 +69,14 @@ public class GroceryList {
 
 
 
-    // public void addItem(GroceryItem gi){
-    //     list.add(gi);
-    //     gi.setList(this);
-    // }
-    // public void removeItem(GroceryItem gi){
-    //     list.remove(gi);
-    //     gi.setList(null);
-    // }
+    public void addItem(GroceryItem gi){
+        list.add(gi);
+        gi.setList(this);
+    }
+    public void removeItem(GroceryItem gi){
+        list.remove(gi);
+        gi.setList(null);
+    }
 
 }
 
